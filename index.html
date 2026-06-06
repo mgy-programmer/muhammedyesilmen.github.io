@@ -1,453 +1,284 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammed Gazali Yeşilmen - Software Developer</title>
-    <style>
-        /* General Styles */
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --background-color: #ecf0f1;
-            --text-color: #34495e;
-            --card-bg-color: #ffffff;
-            --shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        h1, h2, h3 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-        
-        h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-            position: relative;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-        }
-
-        section {
-            padding: 60px 0;
-        }
-
-        /* Header & Navigation */
-        .navbar {
-            background: var(--card-bg-color);
-            color: var(--primary-color);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: top 0.3s;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .navbar .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .navbar ul {
-            display: flex;
-            list-style: none;
-        }
-
-        .navbar ul li a {
-            color: var(--primary-color);
-            padding: 0.5rem 1rem;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Hero Section */
-        #hero {
-            background: linear-gradient(to right, rgba(44, 62, 80, 0.8), rgba(52, 152, 219, 0.8)), url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=2070&auto=format&fit=crop') center center/cover no-repeat;
-            height: 100vh;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: 60px; /* Offset for fixed navbar */
-        }
-        
-        #hero .hero-content {
-            max-width: 800px;
-        }
-
-        #hero h1 {
-            font-size: 3.5rem;
-            color: #fff;
-        }
-
-        #hero p.lead {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-        
-        #hero p.subtitle {
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 20px auto 0;
-        }
-
-        /* About Section */
-        #about .about-content {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
-        
-        #about .profile-img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--secondary-color);
-            box-shadow: var(--shadow);
-        }
-
-        #about .about-text {
-            flex: 1;
-        }
-
-        /* Experience & Projects Section */
-        .card-container {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        .card {
-            background: var(--card-bg-color);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-        }
-        
-        .card .job-title {
-            font-weight: bold;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .card .date {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .card ul {
-            list-style-position: inside;
-            padding-left: 5px;
-        }
-        
-        .card ul li {
-            margin-bottom: 10px;
-        }
-
-        .project-links a {
-            text-decoration: none;
-            color: var(--secondary-color);
-            font-weight: bold;
-            margin-right: 15px;
-            transition: color 0.3s;
-        }
-        
-        .project-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Skills Section */
-        #skills .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
-
-        .skill-badge {
-            background: var(--secondary-color);
-            color: #fff;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-color);
-            color: #fff;
-            text-align: center;
-            padding: 20px 0;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .navbar .container {
-                flex-direction: column;
-            }
-            .navbar ul {
-                margin-top: 10px;
-            }
-
-            #about .about-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Muhammed Gazali Yeşilmen | Technical founder and product builder</title>
+  <meta name="description" content="Muhammed Gazali Yeşilmen is a technical founder building DevMarathon, Capilens, and AyoTravel across developer execution, decision support, and travel technology.">
+  <link rel="canonical" href="https://muhammedyesilmen.com/">
+  <link rel="alternate" hreflang="en" href="https://muhammedyesilmen.com/">
+  <link rel="alternate" hreflang="tr" href="https://muhammedyesilmen.com/tr/">
+  <link rel="alternate" hreflang="x-default" href="https://muhammedyesilmen.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Muhammed Gazali Yeşilmen">
+  <meta property="og:title" content="Muhammed Gazali Yeşilmen | Technical founder and product builder">
+  <meta property="og:description" content="Muhammed Gazali Yeşilmen is a technical founder building DevMarathon, Capilens, and AyoTravel across developer execution, decision support, and travel technology.">
+  <meta property="og:url" content="https://muhammedyesilmen.com/">
+  <meta property="og:image" content="https://muhammedyesilmen.com/assets/images/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Muhammed Gazali Yeşilmen | Technical founder and product builder">
+  <meta name="twitter:description" content="Muhammed Gazali Yeşilmen is a technical founder building DevMarathon, Capilens, and AyoTravel across developer execution, decision support, and travel technology.">
+  <meta name="twitter:image" content="https://muhammedyesilmen.com/assets/images/social-preview.png">
+  <meta name="theme-color" content="#f4efe7">
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="assets/images/founder-portrait-760.webp" imagesrcset="assets/images/founder-portrait-520.webp 520w, assets/images/founder-portrait-760.webp 760w, assets/images/founder-portrait-1000.webp 1000w" imagesizes="(max-width: 720px) 86vw, 38vw">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://muhammedyesilmen.com/#person","name":"Muhammed Gazali Yeşilmen","url":"https://muhammedyesilmen.com","jobTitle":"Technical founder","sameAs":["https://www.linkedin.com/in/muhammedyesilmen/","https://github.com/mgy-programmer"],"knowsAbout":["Developer evaluation","AI-assisted decision support","Travel technology","Mobile product development","Marketplace products"]},{"@type":"WebSite","@id":"https://muhammedyesilmen.com/#website","name":"Muhammed Gazali Yeşilmen","url":"https://muhammedyesilmen.com","inLanguage":"en","publisher":{"@id":"https://muhammedyesilmen.com/#person"}},{"@type":"ItemList","@id":"https://muhammedyesilmen.com/#ventures-list","name":"Current ventures","itemListElement":[{"@type":"ListItem","position":1,"name":"DevMarathon","url":"https://www.devmarathon.com/"},{"@type":"ListItem","position":2,"name":"Capilens","url":"https://capilens.com/"},{"@type":"ListItem","position":3,"name":"AyoTravel","url":"https://ayotechcorp.com/"}]}]}</script>
+  <script src="assets/js/site.js" defer></script>
 </head>
-<body>
-
-    <nav class="navbar">
-        <div class="container">
-            <a href="#hero" class="logo">MGY</a>
-            <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-            </ul>
-        </div>
+<body data-locale="en" data-alternate-path="tr/index.html">
+  
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header" data-site-header>
+      <div class="site-header__inner">
+        <a class="wordmark" href="index.html" aria-label="Muhammed Gazali Yeşilmen">
+          <span class="wordmark__mark" aria-hidden="true">MGY</span>
+          <span class="wordmark__name">Muhammed Gazali Yeşilmen</span>
+        </a>
+        <div class="site-header__desktop">
+          <nav class="primary-nav" aria-label="Main navigation"><a href="#ventures">Ventures</a><a href="#perspective">Perspective</a><a href="#background">Background</a><a href="#profiles">Profiles</a></nav>
+          
+    <nav class="language-switch" aria-label="Language">
+      <a class="language-switch__item is-active" href="index.html" hreflang="en" lang="en" data-locale-link="en" aria-current="true">EN</a>
+      <span aria-hidden="true">/</span>
+      <a class="language-switch__item" href="tr/index.html" hreflang="tr" lang="tr" data-locale-link="tr" aria-current="false">TR</a>
     </nav>
-
-    <section id="hero">
-        <div class="hero-content">
-            <p class="lead">Software Developer</p>
-            <h1>Muhammed Gazali Yeşilmen</h1>
-            <p class="subtitle">
-                My technical experience in mobile development with Flutter provided me with a deep understanding of user needs. In my career, I have leveraged this insight to move beyond coding, focusing on leading teams to build user-centric solutions and shape strategic product vision. My goal is to create valuable products that bridge the gap between technology and people.
-            </p>
+  
         </div>
-    </section>
-
-    <section id="about">
-        <div class="container">
-            <h2>👨‍💻 About Me</h2>
-            <div class="about-content">
-                <img src="images/profile.png" alt="Muhammed Gazali Yeşilmen" class="profile-img">
-                <div class="about-text">
-                    <p>
-                        I am the founder of AyoTech and the developer of the AyoTravel app, a project I built from the ground up using Flutter and Firebase, successfully launching it in March 2024. This end-to-end experience has strengthened my ability to bridge technical execution with business objectives. I am now eager to apply my expertise to ambitious projects, turning complex ideas into market-ready products.
-                    </p>
-                </br>
-            <a href="https://www.linkedin.com/in/muhammedyesilmen/" target="_blank" title="LinkedIn">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-                    <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.25 6.5 1.75 1.75 0 0 1 6.5 8.25zM19 19h-3v-4.75c0-1.4-.5-2.25-1.75-2.25S12.5 13.1 12.5 14.25V19h-3v-9h2.9v1.3a3.1 3.1 0 0 1 2.8-1.55C18.4 9.75 19 11.4 19 13.5z"></path>
-                </svg>
-            </a>
-            <a href="https://github.com/mgy-programmer" target="_blank" title="GitHub">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-                    <path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.15-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.95 0-1.1.39-1.99 1.03-2.69a3.6 3.6 0 0 1 .1-2.64s.84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.4.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.72c0 .27.18.58.69.48A10 10 0 0 0 22 12 10 10 0 0 0 12 2z"></path>
-                </svg>
-            </a>
-                </div>
-            </div>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-button>
+          <span>Menu</span>
+          <span class="menu-button__lines" aria-hidden="true"></span>
+        </button>
+      </div>
+      <div class="mobile-menu" id="mobile-menu" hidden data-mobile-menu>
+        <div class="mobile-menu__panel" role="dialog" aria-modal="true" aria-label="Menu">
+          <div class="mobile-menu__top">
+            <span>Muhammed Gazali Yeşilmen</span>
+            <button class="mobile-menu__close" type="button" data-menu-close>Close menu</button>
+          </div>
+          <nav class="mobile-menu__nav" aria-label="Main navigation"><a href="#ventures">Ventures</a><a href="#perspective">Perspective</a><a href="#background">Background</a><a href="#profiles">Profiles</a></nav>
+          
+    <nav class="language-switch" aria-label="Language">
+      <a class="language-switch__item is-active" href="index.html" hreflang="en" lang="en" data-locale-link="en" aria-current="true">EN</a>
+      <span aria-hidden="true">/</span>
+      <a class="language-switch__item" href="tr/index.html" hreflang="tr" lang="tr" data-locale-link="tr" aria-current="false">TR</a>
+    </nav>
+  
         </div>
-    </section>
-
-    <hr/>
-
-    <section id="experience">
-        <div class="container">
-            <h2>💼 Experience</h2>
-            <div class="card-container">
-                <div class="card">
-                    <h3>SendPal Global Inc.</h3>
-                    <p class="job-title">Technical Product Advisor</p>
-                    <p class="date">September 2025 — Present</p>
-                    <p>I serve as a strategic technical advisor for SendPal, a US-based peer-to-peer crowd-shipping platform. My role focuses on high-level mobile architecture and product feasibility rather than daily coding.</p>
-                    <p><strong>Key Contributions:</strong></p>
-                    <ul>
-                        <li><strong>Marketplace Strategy:</strong> Advising on the technical implementation of connecting travelers with parcel senders effectively.</li>
-                        <li><strong>Trust & Safety Architecture:</strong> Guiding the team on implementing secure Escrow payment models and Identity Verification flows to build community trust.</li>
-                        <li><strong>Technologies involved in the project:</strong> React Native, Node.js, Maps APIs, Payment Gateways.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>AyoTech Software Technologies Inc.</h3>
-                    <p class="job-title">Founder</p>
-                    <p class="date">September 2022 – May 2025</p>
-                    <ul>
-                        <li>Developed AyoTravel, a Flutter-based cross-platform app available on the App Store, Play Store, and AppGallery.</li>
-                        <li>Enabled users to chat with travel guides, share travel photos/videos, and publish their experiences as articles. </li>
-                        <li>Designed and implemented the complete backend integration, including features like booking appointments, secure bank card payments, and OTP-based phone verification.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>SNT Software & Financial Technologies Inc.</h3>
-                    <p class="job-title">Flutter Developer</p>
-                    <p class="date">November 2021 – April 2023</p>
-                     <ul>
-                        <li>Was responsible for the entire mobile development of a stock market application.</li>
-                        <li>Translated Figma UI designs into Flutter code, structured backend logic, and connected API data models.</li>
-                        <li>Implemented secure and responsive communication between the app and server.</li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h3>Eywin Information Technologies</h3>
-                    <p class="job-title">Flutter Developer</p>
-                    <p class="date">July 2020 – February 2021</p>
-                    <ul>
-                        <li>Worked on a privacy-focused mobile projects</li>
-                    </ul>
-                </div>
-            </div>
+      </div>
+    </header>
+  
+  <main id="main">
+    
+    <section class="hero section-pad" aria-labelledby="hero-title">
+      <div class="hero__grid content-grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Technical founder / Product builder</p>
+          <h1 id="hero-title">Muhammed Gazali Yeşilmen</h1>
+          <p class="hero__statement">Building products around execution, trust, and clearer decisions.</p>
+          <p class="hero__body">I work across developer evaluation, medical travel decision support, and travel technology through DevMarathon, Capilens, and AyoTravel.</p>
+          <div class="hero__products" aria-label="Current ventures">
+            <a class="hero-product-link" href="https://www.devmarathon.com/" target="_blank" rel="noopener noreferrer">DevMarathon</a><a class="hero-product-link" href="https://capilens.com/" target="_blank" rel="noopener noreferrer">Capilens</a><a class="hero-product-link" href="https://ayotechcorp.com/" target="_blank" rel="noopener noreferrer">AyoTravel</a>
+          </div>
         </div>
+        <figure class="portrait-frame">
+          <picture>
+            <source type="image/webp" srcset="assets/images/founder-portrait-520.webp 520w, assets/images/founder-portrait-760.webp 760w, assets/images/founder-portrait-1000.webp 1000w" sizes="(max-width: 720px) 86vw, 38vw">
+            <source type="image/jpeg" srcset="assets/images/founder-portrait-520.jpg 520w, assets/images/founder-portrait-760.jpg 760w, assets/images/founder-portrait-1000.jpg 1000w" sizes="(max-width: 720px) 86vw, 38vw">
+            <img src="assets/images/founder-portrait-760.jpg" width="1000" height="1000" alt="Muhammed Gazali Yeşilmen seated at a table, looking to the side." fetchpriority="high">
+          </picture>
+          <figcaption>Technical founder / Product builder</figcaption>
+        </figure>
+      </div>
     </section>
-    <hr/>
-
-    <section id="projects">
-        <div class="container">
-            <h2>📱 Projects</h2>
-            <div class="card-container">
-                <div class="card">
-                    <h3>AyoTravel</h3>
-                    <p>
-                        A mobile application that connects travelers with local guides for personalized experiences. Available on iOS, Android, and Huawei AppGallery.
-                    </p>
-                    <p><strong>Technologies:</strong> Flutter, Firebase, FCM, OTP, Payment System, Provider, MVVM, Atomic Design</p>
-                    <p><strong>Features:</strong> Multi-language support, user-generated content (articles, photos and videos), real-time messaging, secure payment, evaluate guides.</p>
-                    <div class="project-links">
-                        <a href="https://apps.apple.com/us/app/ayotravel/id6475484468" target="_blank">App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.ayotravel" target="_blank">Play Store</a>
-                        <a href="https://appgallery.huawei.com/app/C104839325" target="_blank">AppGallery</a>
-                    </div>
-                </div>
-            </div>
-            <br>
-            <div class="card-container">
-                <div class="card">
-                    <h3>Handvibe</h3>
-                    <p>
-                       A Flutter mobile platform that allows users to sell their handcrafted products
-                    </p>
-                    <p><strong>Technologies:</strong> Flutter, Firebase, FCM, Provider, MVVM, Atomic Design</p>
-                    <p><strong>Features:</strong> Multi-language support, real-time messaging, product listings, and seller ratings.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/mgy-programmer/handvibe" target="_blank">Github</a>
-                    </div>
-                </div>
-            </div>
+  
+    
+    <section class="ventures section-pad" id="ventures" aria-labelledby="ventures-title">
+      <div class="content-grid">
+        <div class="section-intro">
+          <p class="eyebrow">Current ventures</p>
+          <h2 id="ventures-title">Three products, one underlying discipline.</h2>
+          <p>Each product sits in a different market, but the work is connected by the same product instinct: make messy, invisible, or high-friction decisions easier to examine.</p>
         </div>
+        <div class="venture-grid">
+        <article class="venture-card" data-accent="dev">
+          <div class="venture-card__index">01</div>
+          <div>
+            <p class="venture-card__role">Flagship venture</p>
+            <h3>DevMarathon</h3>
+            <p>Structured software challenges that turn developer execution into visible evidence.</p>
+            <a class="text-link" href="https://www.devmarathon.com/" target="_blank" rel="noopener noreferrer">Visit DevMarathon</a>
+          </div>
+        </article>
+      
+        <article class="venture-card" data-accent="cap">
+          <div class="venture-card__index">02</div>
+          <div>
+            <p class="venture-card__role">AI-assisted decision support</p>
+            <h3>Capilens</h3>
+            <p>Decision support for people evaluating medical treatment options abroad, starting with hair transplant planning in Türkiye.</p>
+            <a class="text-link" href="https://capilens.com/" target="_blank" rel="noopener noreferrer">View Capilens</a>
+          </div>
+        </article>
+      
+        <article class="venture-card" data-accent="ayo">
+          <div class="venture-card__index">03</div>
+          <div>
+            <p class="venture-card__role">Travel technology</p>
+            <h3>AyoTravel</h3>
+            <p>A travel technology platform connecting travelers with local expertise, now being reconsidered for a more AI-native direction.</p>
+            <a class="text-link" href="https://ayotechcorp.com/" target="_blank" rel="noopener noreferrer">Explore AyoTravel</a>
+          </div>
+        </article>
+      </div>
+      </div>
     </section>
-
-    <hr/>
-
-    <section id="skills">
-        <div class="container">
-            <h2>🧠 Skills</h2>
-            <div class="skills-container">
-                <span class="skill-badge">Dart</span>
-                <span class="skill-badge">Python</span>
-                <span class="skill-badge">Flutter</span>
-                <span class="skill-badge">Firebase</span>
-                <span class="skill-badge">FCM</span>
-                <span class="skill-badge">SQL</span>
-                <span class="skill-badge">OOP</span>
-                <span class="skill-badge">MVVM</span>
-                <span class="skill-badge">Atomic Design</span>
-                <span class="skill-badge">API Services</span>
-            </div>
+  
+    
+    <section class="feature section-pad feature--dark" id="devmarathon" data-accent="dev" aria-labelledby="devmarathon-title">
+      <div class="feature__grid content-grid">
+        <div class="feature__copy">
+          <p class="eyebrow">01 / Flagship venture</p>
+          <h2 id="devmarathon-title">Developer evaluation should see real execution, not only claims.</h2>
+          <p>DevMarathon gives developers structured, time-boxed software challenges where the work itself becomes the evidence. It is being shaped for individual builders, companies, schools, and communities that need clearer ways to evaluate practical project delivery.</p>
+          <ul class="feature__details"><li>Time-boxed project challenges</li><li>Execution evidence and submitted work</li><li>Clearer human review for companies and communities</li></ul>
+          <a class="text-link" href="https://www.devmarathon.com/" target="_blank" rel="noopener noreferrer">Visit DevMarathon</a>
         </div>
+        <figure class="product-frame">
+          <picture>
+            <source type="image/webp" srcset="assets/images/product-devmarathon.webp">
+            <img src="assets/images/product-devmarathon.png" width="1440" height="980" alt="DevMarathon homepage showing a structured build flow and project challenge positioning." loading="lazy" decoding="async">
+          </picture>
+        </figure>
+      </div>
     </section>
-
-    <footer>
-    <div class="container">
-        <p>&copy; 2025 Muhammed Gazali Yeşilmen. All Rights Reserved.</p>
-        <p style="font-size: 0.8rem; margin-top: 10px; color: #bdc3c7;">
-        </p>
-    </div>
-</footer>
-
-    <script>
-        // Simple script for navbar hide/show on scroll
-        let lastScrollTop = 0;
-        const navbar = document.querySelector('.navbar');
-
-        window.addEventListener('scroll', function() {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > lastScrollTop) {
-                // Downscroll
-                navbar.style.top = '-80px'; // Adjust this value based on navbar height
-            } else {
-                // Upscroll
-                navbar.style.top = '0';
-            }
-            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-        });
-    </script>
-
+  
+    
+    <section class="perspective section-pad" id="perspective" aria-labelledby="perspective-title">
+      <div class="content-grid perspective__grid">
+        <p class="eyebrow">Founder perspective</p>
+        <div>
+          <h2 id="perspective-title">The products are different. The question underneath is similar.</h2>
+          <p>How can software turn fragmented information or invisible effort into something people can understand and act on? DevMarathon approaches this through execution evidence. Capilens approaches it through decision support. AyoTravel approaches it through local knowledge and travel coordination.</p>
+        </div>
+        <ul class="perspective__notes"><li>Make execution visible</li><li>Reduce uncertainty before important decisions</li><li>Build around real-world friction instead of abstract novelty</li></ul>
+      </div>
+    </section>
+  
+    
+    <section class="feature section-pad" id="capilens" data-accent="cap" aria-labelledby="capilens-title">
+      <div class="feature__grid content-grid">
+        <div class="feature__copy">
+          <p class="eyebrow">02 / Decision support</p>
+          <h2 id="capilens-title">Medical travel decisions need calmer structure before commitment.</h2>
+          <p>Capilens is AI-assisted decision support for international patients considering treatment abroad. The first focus is hair transplant planning in Türkiye: organizing clinic information, noticing unclear signals, and preparing better questions before booking.</p>
+          <ul class="feature__details"><li>Not a clinic</li><li>Not medical advice</li><li>No clinic rankings, verification, endorsement, or outcome guarantees</li></ul>
+          <a class="text-link" href="https://capilens.com/" target="_blank" rel="noopener noreferrer">View Capilens</a>
+        </div>
+        <figure class="product-frame">
+          <picture>
+            <source type="image/webp" srcset="assets/images/product-capilens.webp">
+            <img src="assets/images/product-capilens.png" width="1440" height="980" alt="Capilens public homepage showing patient-first planning for hair transplant decisions in Türkiye." loading="lazy" decoding="async">
+          </picture>
+        </figure>
+      </div>
+    </section>
+  
+    
+    <section class="feature section-pad" id="ayotravel" data-accent="ayo" aria-labelledby="ayotravel-title">
+      <div class="feature__grid content-grid">
+        <div class="feature__copy">
+          <p class="eyebrow">03 / Travel technology</p>
+          <h2 id="ayotravel-title">A real marketplace product shaped by mobile, travel, and local expertise.</h2>
+          <p>AyoTravel began as a mobile marketplace connecting travelers with licensed local guides. It brought together guide discovery, profiles, messaging, appointments, payments, user-generated content, and multilingual product flows. The next direction is being reconsidered around more AI-native travel experiences.</p>
+          <ul class="feature__details"><li>Guide discovery and profiles</li><li>Messaging, appointments, and payments</li><li>Mobile execution for a multilingual travel product</li></ul>
+          <a class="text-link" href="https://ayotechcorp.com/" target="_blank" rel="noopener noreferrer">Explore AyoTravel</a>
+        </div>
+        <figure class="product-frame">
+          <picture>
+            <source type="image/webp" srcset="assets/images/product-ayotravel.webp">
+            <img src="assets/images/product-ayotravel.png" width="1440" height="980" alt="AyoTravel public homepage showing mobile screens for guide discovery, appointments, and messaging." loading="lazy" decoding="async">
+          </picture>
+        </figure>
+      </div>
+    </section>
+  
+    
+    <section class="background section-pad" id="background" aria-labelledby="background-title">
+      <div class="content-grid">
+        <div class="background__intro">
+          <p class="eyebrow">Background</p>
+          <h2 id="background-title">Technical execution is the foundation, not the headline.</h2>
+          <p>My product background began with mobile development and expanded into marketplace mechanics, authentication, payments, booking flows, messaging, backend integrations, and AI-assisted product workflows. The useful part is not the stack itself; it is the ability to move from product ambiguity to working systems.</p>
+        </div>
+        <div class="background-grid">
+        <article class="background-item">
+          <h3>Product systems</h3>
+          <p>Mobile apps, marketplace flows, booking logic, messaging, multilingual interfaces, and product operations.</p>
+        </article>
+      
+        <article class="background-item">
+          <h3>Technical foundations</h3>
+          <p>Flutter, Firebase, API integrations, authentication, payment flows, and end-to-end release work.</p>
+        </article>
+      
+        <article class="background-item">
+          <h3>Current direction</h3>
+          <p>Execution-based developer evaluation, AI-assisted decision support, and software that helps people compare complex options more clearly.</p>
+        </article>
+      </div>
+        <div class="journey" aria-labelledby="journey-title">
+          <p class="eyebrow">Founder journey</p>
+          <h2 id="journey-title">A product path built through shipped systems.</h2>
+          <ol>
+        <li>
+          <span>AyoTravel</span>
+          <p>Built and launched a travel marketplace product across mobile, content, guide discovery, payments, and communication flows.</p>
+        </li>
+      
+        <li>
+          <span>DevMarathon</span>
+          <p>Developing a platform for practical software challenges and clearer evaluation of real project execution.</p>
+        </li>
+      
+        <li>
+          <span>Capilens</span>
+          <p>Building a careful decision-support product for a high-trust medical travel context, with clear boundaries around what the product does and does not do.</p>
+        </li>
+      </ol>
+        </div>
+      </div>
+    </section>
+  
+    
+    <section class="profiles section-pad" id="profiles" aria-labelledby="profiles-title">
+      <div class="content-grid profiles__grid">
+        <div>
+          <p class="eyebrow">Profiles</p>
+          <h2 id="profiles-title">Public profiles</h2>
+        </div>
+        <div>
+          <p>A restrained set of links for product, code, and professional context.</p>
+          <div class="social-links"><a class="social-link" href="https://www.linkedin.com/in/muhammedyesilmen/" target="_blank" rel="noopener noreferrer">LinkedIn</a><a class="social-link" href="https://github.com/mgy-programmer" target="_blank" rel="noopener noreferrer">GitHub</a></div>
+        </div>
+      </div>
+    </section>
+  
+  </main>
+  
+    <footer class="site-footer">
+      <div class="content-grid site-footer__grid">
+        <div>
+          <strong>Muhammed Gazali Yeşilmen</strong>
+          <p>Technical founder building DevMarathon, Capilens, and AyoTravel.</p>
+        </div>
+        <nav aria-label="Ventures"><a class="footer-link" href="https://www.devmarathon.com/" target="_blank" rel="noopener noreferrer">DevMarathon</a><a class="footer-link" href="https://capilens.com/" target="_blank" rel="noopener noreferrer">Capilens</a><a class="footer-link" href="https://ayotechcorp.com/" target="_blank" rel="noopener noreferrer">AyoTravel</a></nav>
+        <p class="site-footer__copy">© 2026 Muhammed Gazali Yeşilmen. All rights reserved.</p>
+      </div>
+    </footer>
+  
 </body>
 </html>
