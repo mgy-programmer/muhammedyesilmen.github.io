@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Muhammed Gazali Yeşilmen</title>
+  <desc id="desc">Technical Founder and Product Engineer</desc>
+  <rect width="1200" height="630" fill="#f3f3ef"/>
+  <path d="M0 0h12v630H0z" fill="#4d5ae5"/>
+  <g fill="none" stroke="#d7dad4">
+    <path d="M72 72h1056v486H72z"/>
+    <path d="M72 470h1056"/>
+    <path d="M916 72v486"/>
+  </g>
+  <g font-family="Inter, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+    <text x="112" y="137" fill="#626761" font-family="SFMono-Regular, Consolas, monospace" font-size="18" font-weight="600" letter-spacing="1.6">TECHNICAL FOUNDER · PRODUCT ENGINEER</text>
+    <text x="107" y="273" fill="#121413" font-size="70" font-weight="600" letter-spacing="-3.2">Muhammed Gazali</text>
+    <text x="107" y="357" fill="#121413" font-size="70" font-weight="600" letter-spacing="-3.2">Yeşilmen</text>
+    <text x="109" y="517" fill="#626761" font-size="25" font-weight="450">Building software products around execution, trust, and better decisions.</text>
+    <rect x="971" y="116" width="102" height="74" rx="8" fill="none" stroke="#b9bdb6"/>
+    <text x="1022" y="161" fill="#121413" font-family="SFMono-Regular, Consolas, monospace" font-size="22" font-weight="700" text-anchor="middle" letter-spacing="1.5">MGY</text>
+    <circle cx="1022" cy="504" r="6" fill="#4d5ae5"/>
+  </g>
+</svg>
