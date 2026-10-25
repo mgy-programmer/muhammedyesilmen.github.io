@@ -1,84 +1,70 @@
 (function () {
   "use strict";
 
-  var body = document.body;
-  var menuButton = document.querySelector("[data-menu-button]");
-  var menu = document.querySelector("[data-mobile-menu]");
-  var closeButton = document.querySelector("[data-menu-close]");
-  var lastFocused = null;
+  var localeLinks = document.querySelectorAll("[data-locale-path]");
 
-  function preserveHash(href) {
-    if (!window.location.hash || href.indexOf("#") !== -1) return href;
-    return href + window.location.hash;
-  }
-
-  document.querySelectorAll("[data-locale-link]").forEach(function (link) {
-    link.addEventListener("click", function () {
-      var locale = link.getAttribute("data-locale-link");
-      var href = link.getAttribute("href");
-
-      try {
-        window.localStorage.setItem("mgy-locale", locale);
-      } catch (error) {
-        /* Language switching still works when storage is unavailable. */
-      }
-
-      if (href) link.setAttribute("href", preserveHash(href));
-    });
-  });
-
-  if (!menuButton || !menu || !closeButton) return;
-
-  function focusableElements() {
-    return Array.prototype.slice.call(
-      menu.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
-    );
-  }
-
-  function openMenu() {
-    lastFocused = document.activeElement || menuButton;
-    menu.hidden = false;
-    body.classList.add("menu-open");
-    menuButton.setAttribute("aria-expanded", "true");
-    closeButton.focus();
-  }
-
-  function closeMenu(restoreFocus) {
-    menu.hidden = true;
-    body.classList.remove("menu-open");
-    menuButton.setAttribute("aria-expanded", "false");
-
-    if (restoreFocus !== false && lastFocused && typeof lastFocused.focus === "function") {
-      lastFocused.focus();
+  function syncLanguageLinks() {
+    var hash = window.location.hash;
+    var target = null;
+    try {
+      target = hash && document.getElementById(decodeURIComponent(hash.slice(1)));
+    } catch (error) {
+      /* Invalid fragments must not prevent ordinary language navigation. */
     }
+    localeLinks.forEach(function (link) {
+      link.setAttribute("href", link.getAttribute("data-locale-path") + (target ? hash : ""));
+    });
   }
 
-  menuButton.addEventListener("click", openMenu);
-  closeButton.addEventListener("click", function () {
-    closeMenu(true);
+  syncLanguageLinks();
+  window.addEventListener("hashchange", syncLanguageLinks);
+
+  var header = document.querySelector("[data-site-header]");
+  var trigger = document.querySelector("[data-menu-open]");
+  var menu = document.querySelector("[data-menu]");
+  var closeButton = document.querySelector("[data-menu-close]");
+
+  // Preserve inline navigation if native modal support or JavaScript is unavailable.
+  if (!header || !trigger || !menu || !closeButton || typeof menu.showModal !== "function") return;
+
+  var desktop = window.matchMedia("(min-width: 861px)");
+  var restoreFocus = true;
+
+  function closeMenu(shouldRestoreFocus) {
+    restoreFocus = shouldRestoreFocus;
+    menu.close();
+  }
+
+  trigger.addEventListener("click", function () {
+    if (menu.open) return;
+    restoreFocus = true;
+    menu.showModal();
+    document.documentElement.classList.add("menu-open");
+    trigger.setAttribute("aria-expanded", "true");
+    closeButton.focus();
   });
+
+  closeButton.addEventListener("click", function () { closeMenu(true); });
 
   menu.addEventListener("click", function (event) {
     if (event.target === menu) closeMenu(true);
-    if (event.target.closest(".mobile-nav a")) closeMenu(false);
-  });
-
-  document.addEventListener("keydown", function (event) {
-    if (menu.hidden) return;
-
-    if (event.key === "Escape") {
-      closeMenu(true);
+    if (event.target.closest("[data-locale-path]")) {
+      closeMenu(false);
       return;
     }
+    var sectionLink = event.target.closest("a[href^='#']");
+    if (!sectionLink) return;
+    var section = document.getElementById(sectionLink.getAttribute("href").slice(1));
+    closeMenu(false);
+    if (section) section.focus({ preventScroll: true });
+  });
 
+  // Keep boundary Tab presses inside the menu, including in embedded browsers.
+  menu.addEventListener("keydown", function (event) {
     if (event.key !== "Tab") return;
-
-    var focusable = focusableElements();
-    if (!focusable.length) return;
-
-    var first = focusable[0];
-    var last = focusable[focusable.length - 1];
-
+    var controls = menu.querySelectorAll("button, a[href]");
+    var first = controls[0];
+    var last = controls[controls.length - 1];
     if (event.shiftKey && document.activeElement === first) {
       event.preventDefault();
       last.focus();
@@ -88,7 +74,20 @@
     }
   });
 
-  window.addEventListener("resize", function () {
-    if (window.innerWidth > 860 && !menu.hidden) closeMenu(false);
+  // Native dialog supplies Escape and an inert background.
+  menu.addEventListener("close", function () {
+    document.documentElement.classList.remove("menu-open");
+    trigger.setAttribute("aria-expanded", "false");
+    if (restoreFocus && !desktop.matches) trigger.focus({ preventScroll: true });
   });
+
+  window.addEventListener("resize", function () {
+    if (!desktop.matches || !menu.open) return;
+    closeMenu(false);
+    header.querySelector(".brand").focus({ preventScroll: true });
+  });
+
+  // Enhance only after the controls and their handlers are ready.
+  header.classList.add("is-enhanced");
+  trigger.hidden = false;
 })();

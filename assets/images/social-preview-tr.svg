@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Muhammed Gazali Yeşilmen — Yazılım Geliştirici ve Kurucu</title>
+  <desc id="desc">Güncel odağım: DevMarathon</desc>
+  <rect width="1200" height="630" fill="#f5f3ed"/>
+  <rect width="12" height="630" fill="#46594b"/>
+  <g font-family="Avenir Next, -apple-system, BlinkMacSystemFont, Segoe UI, Arial, sans-serif">
+    <text x="64" y="79" font-size="17" letter-spacing="1" fill="#46594b">MUHAMMEDYESILMEN.COM</text>
+    <path d="M64 122h1072M64 485h664" stroke="#d3d3c7"/>
+    <g fill="#20231f" font-size="65" font-weight="700" letter-spacing="-1.5">
+      <text x="59" y="240">Muhammed Gazali</text>
+      <text x="59" y="320">Yeşilmen</text>
+    </g>
+    <text x="64" y="392" font-size="28" fill="#46594b">Yazılım Geliştirici ve Kurucu</text>
+    <circle cx="68" cy="528" r="4" fill="#46594b"/>
+    <text x="86" y="536" font-size="22" fill="#46594b">Güncel odağım: DevMarathon</text>
+    <image x="850" y="157" width="286" height="350" href="founder-portrait-1000.jpg" preserveAspectRatio="xMidYMid slice"/>
+    <rect x="850" y="157" width="286" height="350" fill="none" stroke="#d3d3c7"/>
+    <text x="850" y="536" font-size="18" font-weight="700" fill="#46594b">MGY</text>
+  </g>
+</svg>
