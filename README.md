@@ -43,8 +43,9 @@ selection moves focus to the destination; Escape and Close return it to Menu.
   those figures without checking their provenance.
 - Existing role, company, date and education information is carried forward from
   the original site. Confirm it with the owner before changing factual claims.
-- No approved public email was found. Contact uses the existing LinkedIn profile;
-  GitHub is secondary. Never invent a contact address or service endpoint.
+- No approved public email was found. LinkedIn is the primary contact path,
+  followed by the owner-approved X account (`https://x.com/mgy_programmer`) and
+  GitHub. Never invent a contact address or service endpoint.
 
 The public product descriptions were checked against
 [DevMarathon](https://www.devmarathon.com/) and [Capilens](https://capilens.com/)
@@ -53,17 +54,26 @@ verified product outcomes or commercial adoption.
 
 ## Images and metadata
 
-Original portrait and product assets remain in `assets/images/`. The page uses
-responsive WebP/JPEG crops derived from those originals:
+Original portrait and product assets remain in `assets/images/`. The flagship
+uses the owner-provided `alex-evaluation-hero.webp`, approved for use here and in
+the DevMarathon banner. It is displayed complete, without cropping or UI edits.
+The 1920px WebP is a byte-identical copy of that file; 640px and 1280px WebPs and
+a 1280px JPEG fallback are resized from it. The linked original opens in a new
+tab for inspection at full size. Its example score is part of the supplied
+product visual, not a claim of product accuracy, adoption or commercial results.
+
+The secondary images use responsive WebP/JPEG crops from existing originals:
 
 | Asset family | Source / crop purpose |
 | --- | --- |
-| `devmarathon-review-*` | Lower structured-review illustration in `product-devmarathon.png`; no duration labels. Production-interface provenance is not established by this repository. |
+| `devmarathon-evaluation-*` | Owner-approved technical evaluation example. The entire supplied image is preserved, including its rubric and linked evidence. |
 | `capilens-assessment-*` | Preparation and information-boundary area of `product-capilens.png`. |
 | `ayotravel-mobile-*` | Appointment screen in `product-ayotravel.png`, excluding sample names/emails. The original crop is low resolution; larger output does not add source detail. |
 
-Each family has 640px and 1280px WebP/JPEG variants. Preserve the natural aspect
-ratio; the AyoTravel crop is portrait. The hero uses the real portrait with eager
+The secondary families have 640px and 1280px WebP/JPEG variants. The former
+`devmarathon-review-*` illustration assets are retained but no longer displayed.
+Preserve natural image proportions; the AyoTravel crop is portrait and is shown
+at a modest size within its frame. The hero uses the real portrait with eager
 loading and high fetch priority; product images are lazy loaded. Social previews
 are separate standalone EN/TR PNGs with corresponding editable SVGs.
 
@@ -105,10 +115,10 @@ public launch where relevant.
   names and responsibility summary.
 - [ ] **Education:** confirm Kastamonu University, Computer Engineering and the
   `alumniOf` statement. No completion status or graduation year was added.
-- [ ] **DevMarathon image:** provide the original capture URL, date, application
-  context and release/version if it should be described as a production
-  interface screenshot. The current image illustrates a review workflow; the
-  repository does not prove production-interface provenance or functionality.
+- [ ] **DevMarathon image (for stronger future claims):** the owner has approved
+  the supplied banner image for this site. Confirm capture context and release
+  details before adding claims about a production release or a real candidate's
+  results. The current caption calls it an evaluation example.
 - [ ] **AyoTravel image:** provide a higher-quality original capture showing the
   broader marketplace experience, suitable for public use. Available PNG/WebP
   originals are versions of one marketing composite; the appointment derivatives
